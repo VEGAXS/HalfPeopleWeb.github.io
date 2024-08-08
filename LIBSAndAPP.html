@@ -1,0 +1,371 @@
+<html><head><base href="https://HalfPeopleStudio.com/tools">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>半人工作室 - 開源工具與C++庫</title>
+<style>
+  :root {
+    --primary-color: #161616;
+    --secondary-color: #f0f0f0;
+    --accent-color: #949494;
+    --text-color: #e0e0e0;
+    --highlight-color: #ff6b6b;
+    --gradient-1: linear-gradient(135deg, #7a6641 0%, #442f14 100%);
+    --gradient-2: linear-gradient(135deg, #ff6b6b 0%, #746139 100%);
+  }
+  
+  body {
+    font-family: 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  header {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+  }
+  
+  header.scrolled {
+    background-color: rgba(0, 0, 0, 0.95);
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+  }
+  
+  .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--accent-color);
+    text-decoration: none;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin-left: 20px;
+  }
+  
+  nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  nav ul li a:hover {
+    color: var(--accent-color);
+  }
+  
+  .hero {
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background-image: url('https://HalfPeopleStudio.com/images/tools-hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .hero h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+  }
+  
+  .hero p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .section-title {
+    text-align: center;
+    font-size: 2.5em;
+    margin: 50px 0 30px;
+    color: var(--accent-color);
+  }
+  
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 50px 0;
+  }
+  
+  .tool-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .tool-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: var(--gradient-1);
+    opacity: 0.1;
+    transform: rotate(30deg);
+    z-index: -1;
+    transition: all 0.5s ease;
+  }
+  
+  .tool-card:hover::before {
+    transform: rotate(0deg);
+    opacity: 0.2;
+  }
+  
+  .tool-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(74, 144, 226, 0.1);
+  }
+  
+  .tool-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+  }
+  
+  .tool-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+  }
+  
+  .tool-card p {
+    margin-bottom: 20px;
+  }
+  
+  .cta-button {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background-color: var(--text-color);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(74, 144, 226, 0.3);
+  }
+  
+  footer {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--text-color);
+    text-align: center;
+    padding: 30px 0;
+  }
+  
+  .animate {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+</head>
+<body>
+  <header id="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="https://HalfPeopleStudio.com" class="logo">半人工作室</a>
+        <nav>
+          <ul>
+            <li><a href="https://HalfPeopleStudio.com/">首頁</a></li>
+            <li><a href="https://HalfPeopleStudio.com/games">游戲</a></li>
+            <li><a href="https://HalfPeopleStudio.com/engine">游戲引擎</a></li>
+            <li><a href="https://HalfPeopleStudio.com/tools">工具庫</a></li>
+            <li><a href="https://HalfPeopleStudio.com/blog">博客</a></li>
+            <li><a href="https://HalfPeopleStudio.com/forum">討論區</a></li>
+            <li><a href="https://HalfPeopleStudio.com/about">關於我們</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>開源工具與C++庫</h1>
+      <p>為開發者提供高效、靈活的解決方案，助力創意實現</p>
+    </div>
+  </section>
+
+  <main class="container">
+    <h2 class="section-title">C++庫</h2>
+    <section class="tools-grid">
+      <div class="tool-card">
+        <img src="https://HalfPeopleStudio.com/images/halfmath-icon.png" alt="HalfMath圖標" class="tool-icon" width="80" height="80">
+        <h3>HalfMath</h3>
+        <p>高效的游戲數學庫，提供向量、矩陣運算等功能。適用於2D和3D游戲開發，支持SIMD優化。</p>
+        <a href="https://HalfPeopleStudio.com/tools/halfmath" class="cta-button">了解更多</a>
+      </div>
+      <div class="tool-card">
+        <img src="https://HalfPeopleStudio.com/images/halfrender-icon.png" alt="HalfRender圖標" class="tool-icon" width="80" height="80">
+        <h3>HalfRender</h3>
+        <p>靈活的跨平台渲染庫，支持多種現代圖形API（如Vulkan、DirectX 12、Metal）。提供高級渲染特效和優化工具。</p>
+        <a href="https://HalfPeopleStudio.com/tools/halfrender" class="cta-button">了解更多</a>
+      </div>
+      <div class="tool-card">
+        <img src="https://HalfPeopleStudio.com/images/halfaudio-icon.png" alt="HalfAudio圖標" class="tool-icon" width="80" height="80">
+        <h3>HalfAudio</h3>
+        <p>強大的音頻處理庫，為游戲提供豐富的聲音體驗。支持3D音頻、動態混音、音頻特效等功能。</p>
+        <a href="https://HalfPeopleStudio.com/tools/halfaudio" class="cta-button">了解更多</a>
+      </div>
+      <div class="tool-card">
+        <img src="https://HalfPeopleStudio.com/images/halfphysics-icon.png" alt="HalfPhysics圖標" class="tool-icon" width="80" height="80">
+        <h3>HalfPhysics</h3>
+        <p>輕量級物理模擬庫，適用於2D和3D游戲開發。提供剛體動力學、碰撞檢測、約束求解等功能。</p>
+        <a href="https://HalfPeopleStudio.com/tools/halfphysics" class="cta-button">了解更多</a>
+      </div>
+      <div class="tool-card">
+        <img src="https://HalfPeopleStudio.com/images/halfai-icon.png" alt="HalfAI圖標" class="tool-icon" width="80" height="80">
+        <h3>HalfAI</h3>
+        <p>游戲AI開發工具包，包含行為樹、尋路算法、決策系統等。助力開發者創造智能、有趣的NPC和敵人AI。</p>
+        <a href="https://HalfPeopleStudio.com/tools/halfai" class="cta-button">了解更多</a>
+      </div>
+      <div class="tool-card">
+        <img src="https://HalfPeopleStudio.com/images/halfnet-icon.png" alt="HalfNet圖標" class="tool-icon" width="80" height="80">
+        <h3>HalfNet</h3>
+        <p>高性能、易用的網絡通信庫，專為多人在線游戲設計。支持可靠UDP、延遲補償、狀態同步等技術。</p>
+        <a href="https://HalfPeopleStudio.com/tools/halfnet" class="cta-button">了解更多</a>
+      </div>
+    </section>
+
+    <h2 class="section-title">開源工具程序</h2>
+    <section class="tools-grid">
+      <div class="tool-card">
+        <img src="https://HalfPeopleStudio.com/images/halfscript-icon.png" alt="HalfScript圖標" class="tool-icon" width="80" height="80">
+        <h3>HalfScript</h3>
+        <p>輕量級、高性能的游戲腳本系統。支持熱重載，便於快速迭代開發。與C++無縫集成，適合大型項目。</p>
+        <a href="https://HalfPeopleStudio.com/tools/halfscript" class="cta-button">了解更多</a>
+      </div>
+      <div class="tool-card">
+        <img src="https://HalfPeopleStudio.com/images/halfdata-icon.png" alt="HalfData圖標" class="tool-icon" width="80" height="80">
+        <h3>HalfData</h3>
+        <p>高效的游戲數據管理系統，支持序列化、數據綁定、熱更新等功能。簡化游戲配置和資源管理流程。</p>
+        <a href="https://HalfPeopleStudio.com/tools/halfdata" class="cta-button">了解更多</a>
+      </div>
+      <div class="tool-card">
+        <img src="https://HalfPeopleStudio.com/images/halftexture-icon.png" alt="HalfTexture圖標" class="tool-icon" width="80" height="80">
+        <h3>HalfTexture</h3>
+        <p>多功能紋理處理工具，支持各種圖像格式轉換、壓縮、優化等功能。提高游戲資源加載效率。</p>
+        <a href="https://HalfPeopleStudio.com/tools/halftexture" class="cta-button">了解更多</a>
+      </div>
+      <div class="tool-card">
+        <img src="https://HalfPeopleStudio.com/images/halfshader-icon.png" alt="HalfShader圖標" class="tool-icon" width="80" height="80">
+        <h3>HalfShader</h3>
+        <p>跨平台著色器編譯和優化工具，支持多種圖形API的著色器轉換，提高渲染性能。</p>
+        <a href="https://HalfPeopleStudio.com/tools/halfshader" class="cta-button">了解更多</a>
+      </div>
+      <div class="tool-card">
+        <img src="https://HalfPeopleStudio.com/images/halfscene-icon.png" alt="HalfScene圖標" class="tool-icon" width="80" height="80">
+        <h3>HalfScene</h3>
+        <p>場景管理和優化工具，支持大規模場景的高效渲染和內存管理，包括LOD、場景分割等技術。</p>
+        <a href="https://HalfPeopleStudio.com/tools/halfscene" class="cta-button">了解更多</a>
+      </div>
+      <div class="tool-card">
+        <img src="https://HalfPeopleStudio.com/images/halfui-icon.png" alt="HalfUI圖標" class="tool-icon" width="80" height="80">
+        <h3>HalfUI</h3>
+        <p>輕量級游戲UI系統，支持響應式佈局、動畫效果、主題定製等功能。易於集成和擴展。</p>
+        <a href="https://HalfPeopleStudio.com/tools/halfui" class="cta-button">了解更多</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 半人工作室。保留所有權利。</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const header = document.getElementById('header');
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+      
+      const animateOnScroll = (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+            observer.unobserve(entry.target);
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(animateOnScroll, {
+        root: null,
+        threshold: 0.1
+      });
+
+      document.querySelectorAll('.tool-card').forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>
