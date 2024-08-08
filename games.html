@@ -1,0 +1,680 @@
+<html><head><base href="https://HalfPeopleStudio.com/games">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>半人工作室 - 游戲作品展示</title>
+<style>
+  :root {
+    --primary-color: #1a1a1a;
+    --secondary-color: #f0f0f0;
+    --accent-color: #4a90e2;
+    --text-color: #e0e0e0;
+    --highlight-color: #ff6b6b;
+    --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-2: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+  }
+  
+  body {
+    font-family: 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+  
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 30px;
+  }
+  
+  header {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+  }
+  
+  .logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: transform 0.3s ease;
+  }
+  
+  .logo:hover {
+    transform: scale(1.05);
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin-left: 30px;
+  }
+  
+  nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.3s ease;
+    font-size: 1.1em;
+    display: inline-block;
+  }
+  
+  nav ul li a:hover {
+    color: var(--accent-color);
+    transform: translateY(-3px);
+  }
+  
+  .hero {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: url('https://HalfPeopleStudio.com/images/games-hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .hero h1 {
+    font-size: 4.5em;
+    margin-bottom: 30px;
+    color: var(--accent-color);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    animation: heroTitleAnimation 1.5s ease-out;
+  }
+  
+  @keyframes heroTitleAnimation {
+    0% {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .hero p {
+    font-size: 1.4em;
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: heroTextAnimation 1.5s ease-out 0.5s both;
+  }
+  
+  @keyframes heroTextAnimation {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    padding: 80px 0;
+  }
+  
+  .game-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  .game-card:hover {
+    transform: translateY(-15px) rotateY(10deg);
+    box-shadow: 0 15px 30px rgba(74, 144, 226, 0.3);
+  }
+  
+  .game-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg at 50% 50%, rgba(255,255,255,0) 0deg, rgba(255,255,255,0.03) 60deg, rgba(255,255,255,0) 120deg);
+    animation: rotateShine 8s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .game-card:hover::before {
+    opacity: 1;
+  }
+  
+  @keyframes rotateShine {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .game-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .game-card:hover .game-image {
+    transform: scale(1.1);
+  }
+  
+  .game-info {
+    padding: 30px;
+  }
+  
+  .game-info h3 {
+    font-size: 2em;
+    margin-bottom: 15px;
+    color: var(--accent-color);
+    transition: color 0.3s ease;
+  }
+  
+  .game-card:hover .game-info h3 {
+    color: var(--highlight-color);
+  }
+  
+  .game-info p {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+  }
+  
+  .game-tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  
+  .game-tag {
+    background-color: var(--highlight-color);
+    color: var(--primary-color);
+    padding: 8px 15px;
+    border-radius: 25px;
+    font-size: 0.9em;
+    margin-right: 12px;
+    margin-bottom: 12px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .game-tag:hover {
+    transform: translateY(-5px) rotate(5deg);
+    background-color: var(--accent-color);
+  }
+  
+  .cta-button {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    padding: 12px 25px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 1.1em;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: all 0.5s ease;
+  }
+  
+  .cta-button:hover::before {
+    left: 100%;
+  }
+  
+  .cta-button:hover {
+    background-color: var(--text-color);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+  
+  footer {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--text-color);
+    text-align: center;
+    padding: 30px 0;
+    font-size: 1.1em;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate {
+    animation: fadeInUp 0.8s ease-out;
+  }
+  
+  .section-title {
+    font-size: 3em;
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--accent-color);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: var(--highlight-color);
+    transition: all 0.5s ease;
+  }
+  
+  .section-title:hover::after {
+    width: 100%;
+    left: 0;
+  }
+  
+  .featured-game {
+    display: flex;
+    align-items: center;
+    margin-bottom: 80px;
+    background: var(--gradient-1);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.5s ease;
+  }
+  
+  .featured-game:hover {
+    transform: scale(1.02);
+  }
+  
+  .featured-game-image {
+    flex: 1;
+    max-width: 50%;
+    overflow: hidden;
+  }
+  
+  .featured-game-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .featured-game:hover .featured-game-image img {
+    transform: scale(1.1);
+  }
+  
+  .featured-game-info {
+    flex: 1;
+    padding: 50px;
+  }
+  
+  .featured-game-info h2 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+  }
+  
+  .featured-game-info p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    color: var(--text-color);
+  }
+  
+  .testimonial-section {
+    background: var(--gradient-2);
+    padding: 80px 0;
+    margin-top: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .testimonial-section::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: calc(100% + 100px);
+    height: calc(100% + 100px);
+    background: url('https://HalfPeopleStudio.com/images/testimonial-pattern.svg');
+    opacity: 0.1;
+    animation: backgroundScroll 20s linear infinite;
+  }
+  
+  @keyframes backgroundScroll {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(-100px, -100px);
+    }
+  }
+  
+  .testimonial-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+  }
+  
+  .testimonial-text {
+    font-size: 1.8em;
+    font-style: italic;
+    margin-bottom: 30px;
+    color: var(--primary-color);
+    position: relative;
+  }
+  
+  .testimonial-text::before,
+  .testimonial-text::after {
+    content: '"';
+    font-size: 4em;
+    color: rgba(0,0,0,0.1);
+    position: absolute;
+    top: -20px;
+  }
+  
+  .testimonial-text::before {
+    left: -40px;
+  }
+  
+  .testimonial-text::after {
+    right: -40px;
+  }
+  
+  .testimonial-author {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--primary-color);
+  }
+  
+  /* 新增的動畫效果 */
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+  
+  .floating {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .pulsing {
+    animation: pulse 3s ease-in-out infinite;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="https://HalfPeopleStudio.com" class="logo">半人工作室</a>
+        <nav>
+          <ul>
+            <li><a href="https://HalfPeopleStudio.com/">首頁</a></li>
+            <li><a href="https://HalfPeopleStudio.com/games">游戲</a></li>
+            <li><a href="https://HalfPeopleStudio.com/engine">游戲引擎</a></li>
+            <li><a href="https://HalfPeopleStudio.com/tools">工具庫</a></li>
+            <li><a href="https://HalfPeopleStudio.com/blog">博客</a></li>
+            <li><a href="https://HalfPeopleStudio.com/forum">討論區</a></li>
+            <li><a href="https://HalfPeopleStudio.com/about">關於我們</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="floating">探索半人工作室的游戲世界</h1>
+      <p>每一款游戲都是我們激情與創意的結晶，帶你進入不同的奇幻世界，體驗獨特的游戲樂趣</p>
+    </div>
+  </section>
+
+  <main class="container">
+    <section class="featured-game pulsing">
+      <div class="featured-game-image">
+        <img src="https://HalfPeopleStudio.com/images/featured-game.jpg" alt="特色游戲：星際探險" width="700" height="400">
+      </div>
+      <div class="featured-game-info">
+        <h2>星際探險</h2>
+        <p>我們最新推出的大型開放世界科幻冒險游戲。在浩瀚宇宙中展開驚險刺激的冒險，探索未知星球，揭開宇宙奧秘。</p>
+        <a href="https://HalfPeopleStudio.com/games/star-explorer" class="cta-button">立即探索</a>
+      </div>
+    </section>
+
+    <h2 class="section-title">我們的游戲作品</h2>
+    <div class="games-grid">
+      <div class="game-card">
+        <img src="https://HalfPeopleStudio.com/images/magic-academy.jpg" alt="魔法學院游戲截圖" class="game-image" width="350" height="250">
+        <div class="game-info">
+          <h3>魔法學院</h3>
+          <p>成為一名魔法學徒，在神奇的學院中學習魔法，結交朋友，對抗黑暗勢力。體驗魔法世界的奇妙冒險。</p>
+          <div class="game-tags">
+            <span class="game-tag">奇幻</span>
+            <span class="game-tag">冒險</span>
+            <span class="game-tag">模擬</span>
+          </div>
+          <a href="https://HalfPeopleStudio.com/games/magic-academy" class="cta-button">了解更多</a>
+        </div>
+      </div>
+      
+      <div class="game-card">
+        <img src="https://HalfPeopleStudio.com/images/cyberpunk-detective.jpg" alt="賽博朋克偵探游戲截圖" class="game-image" width="350" height="250">
+        <div class="game-info">
+          <h3>賽博朋克偵探</h3>
+          <p>在未來都市中扮演一名私家偵探，運用高科技工具破解複雜的犯罪案件。沉浸在充滿霓虹燈和陰謀的世界中。</p>
+          <div class="game-tags">
+            <span class="game-tag">賽博朋克</span>
+            <span class="game-tag">推理</span>
+            <span class="game-tag">動作</span>
+          </div>
+          <a href="https://HalfPeopleStudio.com/games/cyberpunk-detective" class="cta-button">了解更多</a>
+        </div>
+      </div>
+      
+      <div class="game-card">
+        <img src="https://HalfPeopleStudio.com/images/eco-warriors.jpg" alt="生態戰士游戲截圖" class="game-image" width="350" height="250">
+        <div class="game-info">
+          <h3>生態戰士</h3>
+          <p>在這款策略游戲中，領導一支環保隊伍，拯救瀕危生態系統，對抗環境污染。你的決策將影響整個星球的未來。</p>
+          <div class="game-tags">
+            <span class="game-tag">策略</span>
+            <span class="game-tag">教育</span>
+            <span class="game-tag">模擬</span>
+          </div>
+          <a href="https://HalfPeopleStudio.com/games/eco-warriors" class="cta-button">了解更多</a>
+        </div>
+      </div>
+      
+      <div class="game-card">
+        <img src="https://HalfPeopleStudio.com/images/time-warp.jpg" alt="時空扭曲游戲截圖" class="game-image" width="350" height="250">
+        <div class="game-info">
+          <h3>時空扭曲</h3>
+          <p>在這款創新的解謎游戲中，玩家可以操縱時間來解決複雜的難題，體驗獨特的游戲機制。挑戰你的智慧和想象力。</p>
+          <div class="game-tags">
+            <span class="game-tag">解謎</span>
+            <span class="game-tag">創新</span>
+            <span class="game-tag">冒險</span>
+          </div>
+          <a href="https://HalfPeopleStudio.com/games/time-warp" class="cta-button">了解更多</a>
+        </div>
+      </div>
+      
+      <div class="game-card">
+        <img src="https://HalfPeopleStudio.com/images/melody-maker.jpg" alt="旋律創造者游戲截圖" class="game-image" width="350" height="250">
+        <div class="game-info">
+          <h3>旋律創造者</h3>
+          <p>這款音樂游戲讓玩家成為音樂製作人，創作自己的音樂，挑戰各種音樂風格。釋放你內心的音樂天才。</p>
+          <div class="game-tags">
+            <span class="game-tag">音樂</span>
+            <span class="game-tag">創意</span>
+            <span class="game-tag">休閒</span>
+          </div>
+          <a href="https://HalfPeopleStudio.com/games/melody-maker" class="cta-button">了解更多</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <section class="testimonial-section">
+    <div class="container">
+      <div class="testimonial-container">
+        <p class="testimonial-text">"半人工作室的游戲總是能給我帶來驚喜。他們的創意和對細節的關注讓每一款游戲都成為一次難忘的體驗。"</p>
+        <p class="testimonial-author">- 李明，資深游戲評論家</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 半人工作室。保留所有權利。</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const gameCards = document.querySelectorAll('.game-card');
+      const header = document.querySelector('header');
+      const heroContent = document.querySelector('.hero-content');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+      
+      gameCards.forEach(card => {
+        observer.observe(card);
+      });
+
+      // 滾動效果
+      let lastScrollTop = 0;
+      window.addEventListener('scroll', () => {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > lastScrollTop) {
+          header.style.transform = 'translateY(-100%)';
+        } else {
+          header.style.transform = 'translateY(0)';
+        }
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+      }, false);
+
+      // 游戲卡片懸停效果
+      gameCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+        });
+      });
+
+      // 添加打字機效果
+      function typeWriter(element, text, speed = 50) {
+        let i = 0;
+        element.innerHTML = '';
+        function type() {
+          if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+          }
+        }
+        type();
+      }
+
+      const heroTitle = heroContent.querySelector('h1');
+      const heroText = heroContent.querySelector('p');
+      
+      typeWriter(heroTitle, '探索半人工作室的游戲世界', 100);
+      setTimeout(() => {
+        typeWriter(heroText, '每一款游戲都是我們激情與創意的結晶，帶你進入不同的奇幻世界，體驗獨特的游戲樂趣', 30);
+      }, 3000);
+    });
+  </script>
+</body>
+</html>

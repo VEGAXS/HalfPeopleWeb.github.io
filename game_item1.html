@@ -1,0 +1,543 @@
+<html><head><base href="https://HalfPeopleStudio.com/games/magic-academy">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>魔法學院 - 半人工作室</title>
+<style>
+  :root {
+    --primary-color: #1a1a1a;
+    --secondary-color: #f0f0f0;
+    --accent-color: #8a2be2;
+    --text-color: #e0e0e0;
+    --highlight-color: #ff6b6b;
+  }
+  
+  body {
+    font-family: 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  header {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+  }
+  
+  .logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin-left: 20px;
+  }
+  
+  nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  nav ul li a:hover {
+    color: var(--accent-color);
+  }
+  
+  .hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: url('https://HalfPeopleStudio.com/images/magic-academy-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .hero h1 {
+    font-size: 4em;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+  }
+  
+  .hero p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .cta-button {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    padding: 12px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background-color: var(--highlight-color);
+  }
+  
+  .game-features {
+    padding: 80px 0;
+  }
+  
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+  
+  .feature-item {
+    text-align: center;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .feature-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .feature-icon {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+  }
+  
+  .feature-item h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+  }
+  
+  .gameplay {
+    padding: 80px 0;
+    background-color: rgba(255, 255, 255, 0.02);
+  }
+  
+  .gameplay h2 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: var(--accent-color);
+  }
+  
+  .gameplay-video {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    display: block;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+  
+  .screenshots {
+    padding: 80px 0;
+  }
+  
+  .screenshots h2 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: var(--accent-color);
+  }
+  
+  .screenshot-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  
+  .screenshot-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  .screenshot-item img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+  }
+  
+  .screenshot-item:hover img {
+    transform: scale(1.1);
+  }
+  
+  .reviews {
+    padding: 80px 0;
+    background-color: rgba(255, 255, 255, 0.02);
+  }
+  
+  .reviews h2 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: var(--accent-color);
+  }
+  
+  .review-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+  
+  .review-item {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 10px;
+  }
+  
+  .review-text {
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+  
+  .review-author {
+    font-weight: bold;
+    color: var(--accent-color);
+  }
+  
+  footer {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--text-color);
+    text-align: center;
+    padding: 20px 0;
+  }
+  
+  @keyframes floatAnimation {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+  
+  .floating {
+    animation: floatAnimation 6s ease-in-out infinite;
+  }
+  
+  @keyframes glowAnimation {
+    0% {
+      text-shadow: 0 0 5px var(--accent-color);
+    }
+    50% {
+      text-shadow: 0 0 20px var(--accent-color), 0 0 30px var(--accent-color);
+    }
+    100% {
+      text-shadow: 0 0 5px var(--accent-color);
+    }
+  }
+  
+  .glowing {
+    animation: glowAnimation 3s ease-in-out infinite;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="https://HalfPeopleStudio.com" class="logo">半人工作室</a>
+        <nav>
+          <ul>
+            <li><a href="https://HalfPeopleStudio.com/">首頁</a></li>
+            <li><a href="https://HalfPeopleStudio.com/games">游戲</a></li>
+            <li><a href="https://HalfPeopleStudio.com/engine">游戲引擎</a></li>
+            <li><a href="https://HalfPeopleStudio.com/tools">工具庫</a></li>
+            <li><a href="https://HalfPeopleStudio.com/blog">博客</a></li>
+            <li><a href="https://HalfPeopleStudio.com/forum">討論區</a></li>
+            <li><a href="https://HalfPeopleStudio.com/about">關於我們</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="glowing">魔法學院</h1>
+      <p class="floating">踏入魔法的世界，成為一名魔法學徒，在神奇的學院中學習魔法，結交朋友，對抗黑暗勢力。一場奇妙的冒險正等著你！</p>
+      <a href="#download" class="cta-button">立即下載</a>
+    </div>
+  </section>
+
+  <section class="game-features">
+    <div class="container">
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feature-icon">🧙‍♂️</div>
+          <h3>魔法系統</h3>
+          <p>學習和掌握各種魔法，從基礎咒語到高級法術，打造屬於你的魔法風格。</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🏰</div>
+          <h3>探索學院</h3>
+          <p>在神秘的魔法學院中探索，發現隱藏的秘密和寶藏，揭開學院的古老謎題。</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">👥</div>
+          <h3>社交互動</h3>
+          <p>與其他學生和教授互動，建立友誼或競爭關係，參與學院的各種活動。</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">⚔️</div>
+          <h3>魔法對決</h3>
+          <p>參與激動人心的魔法對決，挑戰其他學生或邪惡勢力，證明自己的實力。</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📚</div>
+          <h3>課程與任務</h3>
+          <p>參加各種魔法課程，完成教授布置的任務，提升你的魔法技能和知識。</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🌟</div>
+          <h3>個性化角色</h3>
+          <p>自定義你的角色外觀和能力，選擇專精的魔法領域，打造獨特的魔法師形象。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gameplay">
+    <div class="container">
+      <h2>游戲玩法</h2>
+      <video class="gameplay-video" controls poster="https://HalfPeopleStudio.com/images/magic-academy-video-poster.jpg">
+        <source src="https://HalfPeopleStudio.com/videos/magic-academy-gameplay.mp4" type="video/mp4">
+        您的瀏覽器不支持視頻標簽。
+      </video>
+    </div>
+  </section>
+
+  <section class="screenshots">
+    <div class="container">
+      <h2>游戲截圖</h2>
+      <div class="screenshot-grid">
+        <div class="screenshot-item">
+          <img src="https://HalfPeopleStudio.com/images/magic-academy-screenshot-1.jpg" alt="魔法學院大廳" width="400" height="225">
+        </div>
+        <div class="screenshot-item">
+          <img src="https://HalfPeopleStudio.com/images/magic-academy-screenshot-2.jpg" alt="魔法課堂場景" width="400" height="225">
+        </div>
+        <div class="screenshot-item">
+          <img src="https://HalfPeopleStudio.com/images/magic-academy-screenshot-3.jpg" alt="魔法對決場景" width="400" height="225">
+        </div>
+        <div class="screenshot-item">
+          <img src="https://HalfPeopleStudio.com/images/magic-academy-screenshot-4.jpg" alt="神秘森林探索" width="400" height="225">
+        </div>
+        <div class="screenshot-item">
+          <img src="https://HalfPeopleStudio.com/images/magic-academy-screenshot-5.jpg" alt="角色定制界面" width="400" height="225">
+        </div>
+        <div class="screenshot-item">
+          <img src="https://HalfPeopleStudio.com/images/magic-academy-screenshot-6.jpg" alt="魔法商店" width="400" height="225">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reviews">
+    <div class="container">
+      <h2>玩家評價</h2>
+      <div class="review-grid">
+        <div class="review-item">
+          <p class="review-text">"魔法學院是我玩過最沉浸式的魔法游戲！每一個細節都充滿魔法的氛圍，讓人感覺真的成為了一名魔法學徒。"</p>
+          <p class="review-author">- 魔法愛好者小王</p>
+        </div>
+        <div class="review-item">
+          <p class="review-text">"游戲的魔法系統非常有深度，每次學習新魔法都讓人感到興奮。而且，與其他玩家的互動也很有趣。"</p>
+          <p class="review-author">- 游戲評論家李明</p>
+        </div>
+        <div class="review-item">
+          <p class="review-text">"魔法學院的劇情設計很吸引人，每次揭開一個謎題都讓我欲罷不能。這是一款值得反覆游玩的精品游戲。"</p>
+          <p class="review-author">- 資深玩家張三</p>
+        </div>
+        <div class="review-item">
+          <p class="review-text">"游戲畫面精美，音樂氛圍絕佳，真的讓人感覺置身於一個魔法世界。強烈推薦給所有奇幻游戲愛好者！"</p>
+          <p class="review-author">- 游戲主播魔法少女</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 半人工作室。保留所有權利。</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const header = document.querySelector('header');
+      const heroContent = document.querySelector('.hero-content');
+      const featureItems = document.querySelectorAll('.feature-item');
+      const screenshotItems = document.querySelectorAll('.screenshot-item');
+      
+      // 滾動效果
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+          header.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+        } else {
+          header.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+        }
+      });
+
+      // 特性項目動畫
+      const featureObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+
+      featureItems.forEach(item => {
+        item.style.opacity = 0;
+        item.style.transform = 'translateY(20px)';
+        item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        featureObserver.observe(item);
+      });
+
+      // 截圖項目動畫
+      const screenshotObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'scale(1)';
+          }
+        });
+      }, { threshold: 0.1 });
+
+      screenshotItems.forEach(item => {
+        item.style.opacity = 0;
+        item.style.transform = 'scale(0.9)';
+        item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        screenshotObserver.observe(item);
+      });
+
+      // 魔法粒子效果
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      document.body.appendChild(canvas);
+
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      canvas.style.position = 'fixed';
+      canvas.style.top = '0';
+      canvas.style.left = '0';
+      canvas.style.pointerEvents = 'none';
+      canvas.style.zIndex = '1000';
+
+      const particles = [];
+      const particleCount = 50;
+
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.size = Math.random() * 5 + 1;
+          this.speedX = Math.random() * 3 - 1.5;
+          this.speedY = Math.random() * 3 - 1.5;
+          this.color = `hsl(${Math.random() * 60 + 240}, 100%, 50%)`;
+        }
+
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+
+          if (this.size > 0.2) this.size -= 0.1;
+
+          if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+          if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+        }
+
+        draw() {
+          ctx.fillStyle = this.color;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      function createParticles() {
+        for (let i = 0; i < particleCount; i++) {
+          particles.push(new Particle());
+        }
+      }
+
+      function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < particles.length; i++) {
+          particles[i].update();
+          particles[i].draw();
+        }
+        requestAnimationFrame(animateParticles);
+      }
+
+      createParticles();
+      animateParticles();
+
+      window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+    });
+  </script>
+</body>
+</html>

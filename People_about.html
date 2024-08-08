@@ -1,0 +1,522 @@
+<html><head><base href="https://HalfPeopleStudio.com/team/zhangsan">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>張三 - 首席開發者 | 半人工作室</title>
+<style>
+  :root {
+    --primary-color: #1a1a1a;
+    --secondary-color: #f0f0f0;
+    --accent-color: #4a90e2;
+    --text-color: #e0e0e0;
+    --highlight-color: #ff6b6b;
+  }
+  
+  body {
+    font-family: 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  header {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+  }
+  
+  .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--accent-color);
+    text-decoration: none;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin-left: 20px;
+  }
+  
+  nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  nav ul li a:hover {
+    color: var(--accent-color);
+  }
+  
+  .hero {
+    background-image: url('https://HalfPeopleStudio.com/images/zhangsan-hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+  }
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .hero h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+  }
+  
+  .section {
+    padding: 80px 0;
+  }
+  
+  .section-title {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 50px;
+    color: var(--accent-color);
+  }
+  
+  .profile-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  
+  .profile-image {
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .profile-image img {
+    max-width: 100%;
+    border-radius: 50%;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .profile-details {
+    flex: 2;
+    min-width: 300px;
+    padding-left: 40px;
+  }
+  
+  .profile-details h2 {
+    color: var(--accent-color);
+    margin-bottom: 20px;
+  }
+  
+  .skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .skill-tag {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9em;
+  }
+  
+  .projects {
+    margin-top: 50px;
+  }
+  
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+  }
+  
+  .project-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 20px;
+    transition: all 0.3s ease;
+  }
+  
+  .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(74, 144, 226, 0.1);
+  }
+  
+  .project-card img {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+  
+  .project-card h3 {
+    color: var(--accent-color);
+    margin-bottom: 10px;
+  }
+  
+  .timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 0;
+  }
+  
+  .timeline::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background-color: var(--accent-color);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1px;
+  }
+  
+  .timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+  }
+  
+  .timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: -10px;
+    background-color: var(--primary-color);
+    border: 4px solid var(--accent-color);
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+  }
+  
+  .left {
+    left: 0;
+  }
+  
+  .right {
+    left: 50%;
+  }
+  
+  .right::after {
+    left: -10px;
+  }
+  
+  .timeline-content {
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    position: relative;
+    border-radius: 6px;
+  }
+  
+  .cta-section {
+    background: linear-gradient(135deg, #4a90e2, #764ba2);
+    text-align: center;
+    padding: 80px 0;
+  }
+  
+  .cta-button {
+    display: inline-block;
+    background-color: var(--highlight-color);
+    color: var(--primary-color);
+    padding: 12px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background-color: var(--text-color);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
+  }
+  
+  .quote-section {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 60px 0;
+    text-align: center;
+  }
+  
+  .quote {
+    font-style: italic;
+    font-size: 1.5em;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .interests-section {
+    padding: 60px 0;
+  }
+  
+  .interests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+  }
+  
+  .interest-item {
+    text-align: center;
+  }
+  
+  .interest-icon {
+    font-size: 3em;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+  }
+  
+  footer {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--text-color);
+    text-align: center;
+    padding: 30px 0;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="https://HalfPeopleStudio.com" class="logo">半人工作室</a>
+        <nav>
+          <ul>
+            <li><a href="https://HalfPeopleStudio.com/">首頁</a></li>
+            <li><a href="https://HalfPeopleStudio.com/games">游戲</a></li>
+            <li><a href="https://HalfPeopleStudio.com/engine">游戲引擎</a></li>
+            <li><a href="https://HalfPeopleStudio.com/tools">工具庫</a></li>
+            <li><a href="https://HalfPeopleStudio.com/blog">博客</a></li>
+            <li><a href="https://HalfPeopleStudio.com/forum">討論區</a></li>
+            <li><a href="https://HalfPeopleStudio.com/about">關於我們</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>張三</h1>
+      <p>首席開發者 | 游戲引擎架構專家</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="profile-content">
+        <div class="profile-image">
+          <img src="https://HalfPeopleStudio.com/images/zhangsan-profile.jpg" alt="張三的個人照片" width="300" height="300">
+        </div>
+        <div class="profile-details">
+          <h2>個人簡介</h2>
+          <p>張三是半人工作室的首席開發者，擁有超過10年的游戲開發經驗。他專注於游戲引擎架構設計和性能優化，是工作室自主研發游戲引擎的核心人物。</p>
+          <p>在加入半人工作室之前，張三曾在多家知名游戲公司擔任高級開發工程師，參與了多款3A級游戲的開發。他對游戲技術有深入的理解和獨特的見解，一直致力於推動游戲開發技術的創新和進步。</p>
+          <h3>專業技能</h3>
+          <div class="skill-list">
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">游戲引擎架構</span>
+            <span class="skill-tag">渲染優化</span>
+            <span class="skill-tag">多線程編程</span>
+            <span class="skill-tag">跨平台開發</span>
+            <span class="skill-tag">性能分析</span>
+            <span class="skill-tag">圖形編程</span>
+            <span class="skill-tag">開源項目管理</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section projects">
+    <div class="container">
+      <h2 class="section-title">主要項目</h2>
+      <div class="project-grid">
+        <div class="project-card">
+          <img src="https://HalfPeopleStudio.com/images/halfengine.jpg" alt="半人游戲引擎界面截圖" width="250" height="150">
+          <h3>半人游戲引擎</h3>
+          <p>作為核心開發者，張三領導了半人游戲引擎的設計和實現。這個引擎以其高效的性能和靈活的架構而聞名。</p>
+        </div>
+        <div class="project-card">
+          <img src="https://HalfPeopleStudio.com/images/starexplorer.jpg" alt="星際探險游戲截圖" width="250" height="150">
+          <h3>星際探險</h3>
+          <p>張三負責了《星際探險》游戲的核心系統開發，實現了游戲中的流暢宇宙航行和精確的物理模擬。</p>
+        </div>
+        <div class="project-card">
+          <img src="https://HalfPeopleStudio.com/images/renderlib.jpg" alt="HalfRender庫示例圖" width="250" height="150">
+          <h3>HalfRender</h3>
+          <p>張三開發的開源渲染庫，提供了高效的圖形渲染解決方案，被多個獨立游戲項目採用。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">職業歷程</h2>
+      <div class="timeline">
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <h3>2020 - 至今</h3>
+            <p>半人工作室 - 首席開發者</p>
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <h3>2015 - 2020</h3>
+            <p>星光游戲 - 高級游戲引擎工程師</p>
+          </div>
+        </div>
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <h3>2012 - 2015</h3>
+            <p>夢想互動 - 游戲開發工程師</p>
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <h3>2010 - 2012</h3>
+            <p>創新科技 - 軟件工程師實習生</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quote-section">
+    <div class="container">
+      <blockquote class="quote">
+        "游戲開發是一門藝術，而游戲引擎則是這門藝術的畫筆。我們的目標是打造一支能夠繪製出無限可能的畫筆。"
+      </blockquote>
+      <p>- 張三</p>
+    </div>
+  </section>
+
+  <section class="interests-section">
+    <div class="container">
+      <h2 class="section-title">興趣愛好</h2>
+      <div class="interests-grid">
+        <div class="interest-item">
+          <div class="interest-icon">🎮</div>
+          <h3>復古游戲收藏</h3>
+          <p>收集和玩復古游戲，研究早期游戲設計</p>
+        </div>
+        <div class="interest-item">
+          <div class="interest-icon">🏃</div>
+          <h3>長跑</h3>
+          <p>參加馬拉松，享受跑步帶來的身心平衡</p>
+        </div>
+        <div class="interest-item">
+          <div class="interest-icon">📚</div>
+          <h3>科幻小說</h3>
+          <p>閱讀和討論科幻作品，汲取創意靈感</p>
+        </div>
+        <div class="interest-item">
+          <div class="interest-icon">🎸</div>
+          <h3>彈吉他</h3>
+          <p>業餘吉他手，喜歡即興創作</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <h2>與張三交流</h2>
+      <p>如果你對游戲開發技術感興趣，或者想了解更多關於半人工作室的技術創新，歡迎與張三交流！</p>
+      <a href="https://HalfPeopleStudio.com/contact/zhangsan" class="cta-button">聯系張三</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 半人工作室。保留所有權利。</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const header = document.querySelector('header');
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+        } else {
+          header.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+        }
+      });
+      
+      const projectCards = document.querySelectorAll('.project-card');
+      projectCards.forEach(card => {
+        card.addEventListener('mouseover', function() {
+          this.style.transform = 'translateY(-5px)';
+        });
+        card.addEventListener('mouseout', function() {
+          this.style.transform = 'translateY(0)';
+        });
+      });
+
+      // 添加時間線動畫
+      const timelineItems = document.querySelectorAll('.timeline-item');
+      const options = {
+        threshold: 0.5
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, options);
+
+      timelineItems.forEach(item => {
+        item.style.opacity = 0;
+        item.style.transform = 'translateY(20px)';
+        item.style.transition = 'opacity 0.5s, transform 0.5s';
+        observer.observe(item);
+      });
+    });
+  </script>
+</body>
+</html>

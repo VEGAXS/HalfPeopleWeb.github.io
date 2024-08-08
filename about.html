@@ -1,0 +1,443 @@
+<html><head><base href="https://HalfPeopleStudio.com/about">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>關於半人工作室 - 創新獨立游戲開發團隊</title>
+<style>
+  :root {
+    --primary-color: #1a1a1a;
+    --secondary-color: #f0f0f0;
+    --accent-color: #4a90e2;
+    --text-color: #e0e0e0;
+    --highlight-color: #ff6b6b;
+  }
+  
+  body {
+    font-family: 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  header {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+  }
+  
+  .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--accent-color);
+    text-decoration: none;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin-left: 20px;
+  }
+  
+  nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  nav ul li a:hover {
+    color: var(--accent-color);
+  }
+  
+  .hero {
+    background-image: url('https://HalfPeopleStudio.com/images/about-hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+  }
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .hero h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+  }
+  
+  .section {
+    padding: 80px 0;
+  }
+  
+  .section-title {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 50px;
+    color: var(--accent-color);
+  }
+  
+  .about-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .about-text {
+    flex: 1;
+    min-width: 300px;
+    padding-right: 40px;
+  }
+  
+  .about-image {
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+  }
+  
+  .about-image img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .mission-vision {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 40px;
+    margin-top: 60px;
+  }
+  
+  .mission-vision h3 {
+    color: var(--accent-color);
+    margin-bottom: 20px;
+  }
+  
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+  }
+  
+  .team-member {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(74, 144, 226, 0.1);
+  }
+  
+  .team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    object-fit: cover;
+  }
+  
+  .team-member h3 {
+    color: var(--accent-color);
+    margin-bottom: 10px;
+  }
+  
+  .cta-section {
+    background: linear-gradient(135deg, #4a90e2, #764ba2);
+    text-align: center;
+    padding: 80px 0;
+  }
+  
+  .cta-button {
+    display: inline-block;
+    background-color: var(--highlight-color);
+    color: var(--primary-color);
+    padding: 12px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background-color: var(--text-color);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
+  }
+  
+  footer {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--text-color);
+    text-align: center;
+    padding: 30px 0;
+  }
+  
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.8);
+  }
+  
+  .modal-content {
+    background-color: var(--primary-color);
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid var(--accent-color);
+    width: 70%;
+    max-width: 700px;
+    border-radius: 10px;
+    position: relative;
+  }
+  
+  .close {
+    color: var(--accent-color);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: var(--highlight-color);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .modal-header {
+    padding: 2px 16px;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+  }
+  
+  .modal-body {
+    padding: 2px 16px;
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="https://HalfPeopleStudio.com" class="logo">半人工作室</a>
+        <nav>
+          <ul>
+            <li><a href="https://HalfPeopleStudio.com/">首頁</a></li>
+            <li><a href="https://HalfPeopleStudio.com/games">游戲</a></li>
+            <li><a href="https://HalfPeopleStudio.com/engine">游戲引擎</a></li>
+            <li><a href="https://HalfPeopleStudio.com/tools">工具庫</a></li>
+            <li><a href="https://HalfPeopleStudio.com/blog">博客</a></li>
+            <li><a href="https://HalfPeopleStudio.com/forum">討論區</a></li>
+            <li><a href="https://HalfPeopleStudio.com/about">關於我們</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>關於半人工作室</h1>
+      <p>創新獨立游戲開發的先鋒</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">我們的故事</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>半人工作室成立於2015年，由一群充滿激情的游戲開發者和技術專家組成。我們的名字"半人"代表著我們對人工智能和人類創造力結合的追求，象征著科技與藝術的完美融合。</p>
+          <p>在短短幾年內，我們從一個小型的獨立工作室發展成為備受行業認可的游戲開發團隊。我們不僅創造了多款廣受好評的獨立游戲，還開發了自己的游戲引擎和一系列強大的開發工具，為整個獨立游戲社區做出了貢獻。</p>
+          <p>我們相信，真正優秀的游戲源於創新的思維和精湛的技術。因此，我們不斷挑戰自我，探索游戲設計和技術實現的新可能性。</p>
+        </div>
+        <div class="about-image">
+          <img src="https://HalfPeopleStudio.com/images/studio-photo.jpg" alt="半人工作室團隊合影" width="500" height="300">
+        </div>
+      </div>
+      
+      <div class="mission-vision">
+        <h3>我們的使命</h3>
+        <p>通過創新的游戲設計和尖端技術，創造出能夠啟發、娛樂並豐富玩家生活的游戲體驗。</p>
+        <h3>我們的願景</h3>
+        <p>成為全球領先的獨立游戲開發工作室，引領游戲產業的技術革新和創意探索。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">核心團隊</h2>
+      <div class="team-grid">
+        <div class="team-member" onclick="openModal('張三')">
+          <img src="https://HalfPeopleStudio.com/images/team-member1.jpg" alt="張三 - 首席開發者" width="150" height="150">
+          <h3>張三</h3>
+          <p>首席開發者</p>
+          <p>擁有10年游戲開發經驗，專注於游戲引擎架構設計和性能優化。曾參與多款3A大作的開發。</p>
+        </div>
+        <div class="team-member" onclick="openModal('李四')">
+          <img src="https://HalfPeopleStudio.com/images/team-member2.jpg" alt="李四 - 創意總監" width="150" height="150">
+          <h3>李四</h3>
+          <p>創意總監</p>
+          <p>曾獲得多個國際游戲設計獎項，擅長將創新概念轉化為引人入勝的游戲體驗。</p>
+        </div>
+        <div class="team-member" onclick="openModal('王五')">
+          <img src="https://HalfPeopleStudio.com/images/team-member3.jpg" alt="王五 - 技術美術" width="150" height="150">
+          <h3>王五</h3>
+          <p>技術美術</p>
+          <p>計算機圖形學專家，致力於開發前沿的渲染技術和視覺效果，為游戲帶來驚艷的視覺體驗。</p>
+        </div>
+        <div class="team-member" onclick="openModal('趙六')">
+          <img src="https://HalfPeopleStudio.com/images/team-member4.jpg" alt="趙六 - AI研究員" width="150" height="150">
+          <h3>趙六</h3>
+          <p>AI研究員</p>
+          <p>人工智能領域的專家，專注於將最新的AI技術應用到游戲開發中，提升游戲的智能性和交互體驗。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">我們的成就</h2>
+      <ul>
+        <li>連續三年入選"中國最具潛力的獨立游戲工作室"榜單</li>
+        <li>自主研發的游戲引擎獲得"年度最佳游戲開發工具"獎</li>
+        <li>多款游戲在Steam平台獲得"極度好評"評價</li>
+        <li>《星際探險》獲得2022年IndieGame Festival最佳視覺藝術獎</li>
+        <li>團隊成員在國際頂級游戲開發者大會(GDC)上多次發表技術演講</li>
+        <li>與多所高校建立產學研合作關系，推動游戲開發教育</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <h2>加入我們，共創游戲未來！</h2>
+      <p>我們始終在尋找充滿激情和才華的游戲開發者。如果你對創造令人驚嘆的游戲體驗充滿熱情，歡迎加入我們的團隊！</p>
+      <a href="https://HalfPeopleStudio.com/careers" class="cta-button">查看職位空缺</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 半人工作室。保留所有權利。</p>
+    </div>
+  </footer>
+
+  <div id="teamModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="modal-header">
+        <h2 id="modalTitle"></h2>
+      </div>
+      <div class="modal-body">
+        <p id="modalDescription"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const header = document.querySelector('header');
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+        } else {
+          header.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+        }
+      });
+      
+      const teamMembers = document.querySelectorAll('.team-member');
+      teamMembers.forEach(member => {
+        member.addEventListener('mouseover', function() {
+          this.style.transform = 'translateY(-10px)';
+        });
+        member.addEventListener('mouseout', function() {
+          this.style.transform = 'translateY(0)';
+        });
+      });
+    });
+
+    // Modal functionality
+    const modal = document.getElementById("teamModal");
+    const span = document.getElementsByClassName("close")[0];
+
+    function openModal(name) {
+      modal.style.display = "block";
+      document.getElementById("modalTitle").innerText = name;
+      document.getElementById("modalDescription").innerText = getTeamMemberDescription(name);
+    }
+
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+    function getTeamMemberDescription(name) {
+      const descriptions = {
+        '張三': '張三是我們的首席開發者，擁有豐富的游戲開發經驗。他在游戲引擎架構設計和性能優化方面有著深厚的造詣。張三曾參與多款3A大作的開發，為團隊帶來了寶貴的經驗和技術實力。他熱衷於探索新技術，並將其應用到游戲開發中，不斷推動我們的技術邊界。',
+        '李四': '李四作為我們的創意總監，擁有非凡的創意才華和游戲設計能力。他曾獲得多個國際游戲設計獎項，對游戲設計理論和實踐有著獨到的見解。李四善於將創新概念轉化為引人入勝的游戲體驗，他的創意為我們的每一款游戲注入了獨特的魅力和生命力。',
+        '王五': '王五是我們的技術美術專家，在計算機圖形學領域有著深厚的功底。他致力於開發前沿的渲染技術和視覺效果，為我們的游戲帶來驚艷的視覺體驗。王五的工作涵蓋了從概念設計到技術實現的各個環節，他的創新思維和技術實力是我們團隊的寶貴資產。',
+        '趙六': '趙六是我們團隊中的AI研究員，專注於將最新的人工智能技術應用到游戲開發中。他在機器學習、自然語言處理等領域有著深入的研究，並致力於將這些技術轉化為提升游戲智能性和交互體驗的實際應用。趙六的工作為我們的游戲帶來了更智能、更自然的NPC行為和動態游戲世界。'
+      };
+      return descriptions[name] || '暫無詳細信息';
+    }
+  </script>
+</body>
+</html>
